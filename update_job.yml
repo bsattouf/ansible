@@ -19,12 +19,6 @@
         autoremove: yes
         purge: yes
 
-    - name: Change the release to the new version
-      lineinfile:
-        path: /etc/apt/sources.list.d/*
-        regexp: '21.2'
-        line: '22.2'
-
     - name: Update package list for the new version
       apt:
         update_cache: yes
