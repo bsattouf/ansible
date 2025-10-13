@@ -2,7 +2,6 @@
 - name: Upgrade Linux Mint from 21.2 to 22.2
   hosts: all
   become: yes
-  become_user: ladmin
   tasks:
     - name: Update package list
       apt:
