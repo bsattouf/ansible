@@ -17,10 +17,6 @@
         autoremove: yes
         purge: yes
 
-    - name: Update package list for the new version
-      apt:
-        update_cache: yes
-
     - name: Upgrade to the new version
       apt:
         upgrade: dist
