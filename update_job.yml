@@ -1,0 +1,40 @@
+---
+- name: Upgrade Linux Mint from 21.2 to 22.2
+  hosts: all
+  become: yes
+  become_user: ladmin
+  tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upgrade all installed packages
+      apt:
+        upgrade: dist
+        force_apt_get: yes
+
+    - name: Remove unnecessary packages
+      apt:
+        autoremove: yes
+        purge: yes
+
+    - name: Change the release to the new version
+      lineinfile:
+        path: /etc/apt/sources.list.d/*
+        regexp: '21.2'
+        line: '22.2'
+
+    - name: Update package list for the new version
+      apt:
+        update_cache: yes
+
+    - name: Upgrade to the new version
+      apt:
+        upgrade: dist
+        force_apt_get: yes
+
+    - name: Clean up
+      apt:
+        autoremove: yes
+        purge: yes
