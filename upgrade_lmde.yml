@@ -18,7 +18,6 @@
         autoremove: yes
         autoclean: yes
 
-    tasks:
     - name: Backup official-package-repositories.list
       copy:
         src: /etc/apt/sources.list.d/official-package-repositories.list
