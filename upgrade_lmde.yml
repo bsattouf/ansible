@@ -33,8 +33,6 @@
           deb https://deb.debian.org/debian trixie-updates main contrib non-free non-free-firmware
           deb http://security.debian.org trixie-security main contrib non-free non-free-firmware
           
-          # LMDE 7 repositories
-          deb http://deb.linuxmint.com/ lmde7 main upstream import backport
     - name: Update package cache
       apt:
         update_cache: yes
