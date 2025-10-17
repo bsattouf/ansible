@@ -1,6 +1,6 @@
 ---
 - name: Upgrade LMDE 6 to LMDE 7
-  hosts: localhost
+  hosts: all
   become: yes
   tasks:
 
