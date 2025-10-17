@@ -31,8 +31,5 @@
         autoremove: yes
         autoclean: yes
 
-    - name: Reboot the system
-      reboot:
-        msg: "Rebooting the system to complete upgrade"
-        reconnect_timeout: 30
+    
 
