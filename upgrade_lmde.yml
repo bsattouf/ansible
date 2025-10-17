@@ -1,0 +1,45 @@
+---
+- name: Upgrade LMDE 6 to LMDE 7
+  hosts: localhost
+  become: yes
+  tasks:
+
+    - name: Update package lists
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600  # 1 hour
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Remove unnecessary packages
+      apt:
+        autoremove: yes
+        autoclean: yes
+
+    - name: Update sources.list for LMDE 7
+      lineinfile:
+        path: /etc/apt/sources.list
+        regexp: 'bullseye'
+        line: 'bookworm'
+        state: present
+
+    - name: Update package lists for LMDE 7
+      apt:
+        update_cache: yes
+
+    - name: Perform full upgrade to LMDE 7
+      apt:
+        upgrade: dist
+
+    - name: Clean up after the upgrade
+      apt:
+        autoremove: yes
+        autoclean: yes
+
+    - name: Reboot the system
+      reboot:
+        msg: "Rebooting the system to complete upgrade"
+        reconnect_timeout: 30
+
